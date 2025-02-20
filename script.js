@@ -1,22 +1,25 @@
-let currentInput = '';
-let currentResult = '';
+let expression = '';
 
 function appendToDisplay(value) {
-    currentInput += value;
-    document.getElementById('display').value = currentInput;
+    if (expression === '0') {
+        expression = value;
+    } else {
+        expression += value;
+    }
+    document.getElementById('expression').innerText = expression;
 }
 
 function clearDisplay() {
-    currentInput = '';
-    document.getElementById('display').value = '';
+    expression = '';
+    document.getElementById('expression').innerText = '';
+    document.getElementById('display').innerText = '0';
 }
 
 function calculateResult() {
     try {
-        currentResult = eval(currentInput);
-        document.getElementById('display').value = currentResult;
-        currentInput = currentResult.toString();
+        let result = eval(expression);
+        document.getElementById('display').innerText = result;
     } catch (error) {
-        document.getElementById('display').value = 'Error';
+        document.getElementById('display').innerText = 'Error';
     }
 }
